@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bartosz Jankowski</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <script src="content.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:         #eef3f8;
+      --surface:    #ffffff;
+      --border:     #c4d4e4;
+      --border-l:   #d8e6f2;
+      --accent:     #2d5f9a;
+      --accent-dim: rgba(45,95,154,0.08);
+      --accent-ln:  rgba(45,95,154,0.22);
+      --ok:         #2d7a5a;
+      --ok-dim:     rgba(45,122,90,0.08);
+      --ok-ln:      rgba(45,122,90,0.25);
+      --todo-dim:   rgba(90,110,130,0.08);
+      --todo-ln:    rgba(90,110,130,0.2);
+      --text:       #162233;
+      --text-2:     #3a5268;
+      --text-3:     #7a98b8;
+      --font-h:     Georgia, 'Times New Roman', serif;
+      --font-b:     -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      --font-m:     'DM Mono', monospace;
+      --w:          1080px;
+      --px:         clamp(1.25rem, 4vw, 2.5rem);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-b);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    .wrap { max-width: var(--w); margin: 0 auto; padding: 0 var(--px); }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      background: rgba(238,243,248,.93);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: .8rem var(--px); max-width: var(--w); margin: 0 auto;
+    }
+    .lang-sw { display: flex; align-items: center; gap: 2px; }
+    .lang-btn {
+      background: none; border: none; cursor: pointer;
+      font-size: .95rem; padding: .15rem .3rem; border-radius: 2px;
+      border-bottom: 2px solid transparent; transition: all .2s; line-height: 1;
+    }
+    .lang-btn.on { border-bottom-color: var(--accent); }
+    .lang-sep { color: var(--border); font-size: .7rem; padding: 0 2px; }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+    .nav-links a {
+      font-family: var(--font-m); font-size: .72rem; color: var(--text-2);
+      text-decoration: none; transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* HERO */
+    .hero { padding: 7rem 0 3.5rem; }
+    .hero-layout {
+      display: grid; grid-template-columns: 220px 1fr; gap: 3.5rem; align-items: start;
+    }
+    .hero-left { display: flex; flex-direction: column; align-items: flex-start; gap: .9rem; }
+    .hero-photo {
+      width: 140px; height: 140px; border-radius: 50%;
+      border: 2px solid var(--border); object-fit: cover; display: block;
+    }
+    .hero-btns { display: flex; flex-direction: column; gap: .5rem; width: 100%; }
+    .btn {
+      display: inline-block; text-decoration: none; cursor: pointer;
+      font-family: var(--font-b); font-size: .8rem; font-weight: 500;
+      padding: .6rem 1.1rem; border-radius: 3px; transition: all .2s;
+      border: 1px solid transparent; text-align: center;
+    }
+    .btn-p { background: var(--accent); color: #fff; }
+    .btn-p:hover { opacity: .82; }
+    .btn-s { background: transparent; color: var(--text-2); border-color: var(--border); font-size: .75rem; }
+    .btn-s:hover { border-color: var(--accent); color: var(--accent); }
+    .hero-right {}
+    .hero-school {
+      font-family: var(--font-m); font-size: .7rem; color: var(--text-3); margin-bottom: 1rem;
+    }
+    .hero-h1 {
+      font-family: var(--font-h); font-size: clamp(1.7rem, 3.2vw, 2.6rem);
+      font-weight: normal; letter-spacing: -.02em; line-height: 1.15;
+      margin-bottom: 1.5rem; color: var(--text);
+    }
+    .hero-intro { font-size: .92rem; color: var(--text-2); line-height: 1.8; }
+    .hero-intro p { text-align: justify; }
+    .hero-intro p + p { margin-top: 1rem; }
+
+    /* SECTIONS */
+    section { padding: 4.5rem 0; }
+    .s-div { border-top: 1px solid var(--border); }
+    .s-label {
+      font-family: var(--font-m); font-size: .68rem; color: var(--accent);
+      letter-spacing: .1em; text-transform: uppercase;
+      display: flex; align-items: center; gap: .5rem; margin-bottom: .9rem;
+    }
+    .s-label::before { content:''; width:16px; height:1px; background:var(--accent); }
+
+    /* PROJECT */
+    .proj-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 2rem; flex-wrap: wrap; margin-bottom: .75rem; }
+    .proj-name {
+      font-family: var(--font-h); font-size: clamp(2.8rem, 5.5vw, 4.5rem);
+      font-weight: normal; letter-spacing: -.03em; line-height: 1;
+    }
+    .proj-fullname { font-family: var(--font-m); font-size: .72rem; color: var(--text-3); margin-top: .4rem; }
+    .proj-status {
+      font-family: var(--font-m); font-size: .66rem; color: var(--accent);
+      border: 1px solid var(--accent-ln); background: var(--accent-dim);
+      padding: .3rem .7rem; border-radius: 3px; white-space: nowrap; margin-top: .5rem;
+    }
+    .proj-subtitle { font-size: .84rem; color: var(--text-2); line-height: 1.7; margin-bottom: 2.5rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+    /* BLOCKS */
+    .proj-blocks { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 2.5rem; }
+    .p-block { background: var(--surface); border: 1px solid var(--border-l); padding: 1.75rem; border-radius: 4px; }
+    .p-block-title {
+      font-family: var(--font-m); font-size: .64rem; color: var(--accent);
+      letter-spacing: .1em; text-transform: uppercase; margin-bottom: .85rem;
+    }
+    .p-block-text { font-size: .875rem; color: var(--text-2); line-height: 1.8; text-align: justify; }
+
+    /* BRICKS */
+    .arch-h { font-family: var(--font-m); font-size: .72rem; color: var(--text-3); letter-spacing: .05em; margin-bottom: 1.25rem; }
+    .bricks {
+      display: grid; grid-template-columns: repeat(4,1fr);
+      border: 1px solid var(--border); border-radius: 4px;
+      overflow: hidden; background: var(--border); gap: 1px;
+    }
+    .brick { background: var(--surface); padding: 1.75rem 1.4rem; position: relative; transition: background .2s; }
+    .brick:hover { background: #f7fafd; }
+    .brick-bar { position: absolute; top: 0; left: 0; right: 0; height: 2px; }
+    .brick[data-s="cadre"] .brick-bar { background: var(--ok); }
+    .brick[data-s="poc"]   .brick-bar { background: var(--accent); }
+    .brick[data-s="todo"]  .brick-bar { background: var(--border); }
+    .brick-n { font-family: var(--font-m); font-size: 1.6rem; font-weight: 300; color: var(--border); line-height: 1; margin-bottom: .7rem; }
+    .brick-tag { font-family: var(--font-m); font-size: .6rem; color: var(--text-3); text-transform: uppercase; letter-spacing: .07em; margin-bottom: .35rem; }
+    .brick-name { font-family: var(--font-h); font-size: .92rem; letter-spacing: -.01em; margin-bottom: .65rem; line-height: 1.25; }
+    .brick-desc { font-size: .79rem; color: var(--text-2); line-height: 1.68; margin-bottom: 1.1rem; text-align: justify; }
+    .brick-badge { font-family: var(--font-m); font-size: .6rem; padding: .18rem .5rem; border-radius: 2px; display: inline-block; }
+    .brick[data-s="cadre"] .brick-badge { color: var(--ok); background: var(--ok-dim); border: 1px solid var(--ok-ln); }
+    .brick[data-s="poc"]   .brick-badge { color: var(--accent); background: var(--accent-dim); border: 1px solid var(--accent-ln); }
+    .brick[data-s="todo"]  .brick-badge { color: var(--text-3); background: var(--todo-dim); border: 1px solid var(--todo-ln); }
+
+    /* SKILLS */
+    .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+    .sk-col-heading {
+      font-family: var(--font-h); font-size: 1.05rem; font-weight: normal;
+      color: var(--accent); margin-bottom: 1.5rem; letter-spacing: -.01em;
+      padding-bottom: .5rem; border-bottom: 1px solid var(--border-l);
+    }
+    .sk-group { margin-bottom: 1.5rem; }
+    .sk-group-label {
+      font-family: var(--font-m); font-size: .63rem; color: var(--text-3);
+      text-transform: uppercase; letter-spacing: .08em; margin-bottom: .5rem;
+    }
+    .sk-group ul { list-style: none; }
+    .sk-group ul li {
+      font-size: .845rem; color: var(--text-2); padding: .28rem 0;
+      border-bottom: 1px solid var(--border-l); line-height: 1.4;
+    }
+    .sk-group ul li::before { content: '→ '; color: var(--accent); font-family: var(--font-m); font-size: .7rem; }
+
+    /* CONTACT */
+    .contact-inner { max-width: 580px; }
+    .contact-h { font-family: var(--font-h); font-size: clamp(1.7rem, 3vw, 2.4rem); font-weight: normal; letter-spacing: -.02em; margin-bottom: .6rem; }
+    .contact-closing { font-size: .95rem; color: var(--accent); font-family: var(--font-b); font-weight: 500; margin-bottom: .65rem; }
+    .contact-sub { font-size: .88rem; color: var(--text-2); line-height: 1.7; margin-bottom: 1rem; text-align: justify; }
+    .contact-phone { font-family: var(--font-m); font-size: .8rem; color: var(--text-2); margin-bottom: 1.25rem; }
+    .contact-phone a { color: var(--accent); text-decoration: none; }
+    .contact-phone a:hover { text-decoration: underline; }
+    .contact-btns { display: flex; gap: .8rem; flex-wrap: wrap; }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border); padding: 1.5rem var(--px);
+      text-align: center; font-family: var(--font-m); font-size: .66rem; color: var(--text-3);
+    }
+
+    /* ANIMATIONS */
+    .a { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+    .a.in { opacity: 1; transform: none; }
+    .d1 { transition-delay: .1s; } .d2 { transition-delay: .2s; }
+    .d3 { transition-delay: .3s; } .d4 { transition-delay: .4s; }
+
+    /* RESPONSIVE */
+    @media (max-width: 820px) {
+      .hero-layout { grid-template-columns: 1fr; gap: 2rem; }
+      .hero-left { flex-direction: row; align-items: center; gap: 1.25rem; flex-wrap: wrap; }
+      .hero-btns { flex-direction: row; width: auto; flex-wrap: wrap; }
+      .bricks { grid-template-columns: 1fr 1fr; }
+      .proj-blocks { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .proj-subtitle { white-space: normal; }
+      .contact-inner { max-width: 100%; }
+    }
+    @media (max-width: 560px) {
+      .bricks { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .hero-left { flex-direction: column; align-items: flex-start; }
+      .hero-photo { width: 90px; height: 90px; }
+      .hero-btns { flex-direction: column; width: 100%; }
+      .btn { width: 100%; text-align: center; }
+      .hero-h1 { font-size: 1.55rem; }
+      .proj-name { font-size: 2.4rem; }
+      .contact-h { font-size: 1.6rem; }
+      .contact-btns { flex-direction: column; }
+      section { padding: 3rem 0; }
+    }
+    @media (max-width: 380px) {
+      :root { --px: 1rem; }
+      .hero { padding: 5.5rem 0 2.5rem; }
+      .hero-photo { width: 72px; height: 72px; }
+      .hero-h1 { font-size: 1.35rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="lang-sw">
+      <button class="lang-btn on" data-l="fr">🇫🇷</button>
+      <span class="lang-sep">·</span>
+      <button class="lang-btn" data-l="en">🇬🇧</button>
+      <span class="lang-sep">·</span>
+      <button class="lang-btn" data-l="pl">🇵🇱</button>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#about"   id="nl-about">À propos</a></li>
+      <li><a href="#project" id="nl-proj">Projet</a></li>
+      <li><a href="#contact" id="nl-contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="about">
+  <div class="wrap">
+    <div class="hero-layout">
+      <div class="hero-left a">
+        <img src="https://github.com/bjankowski-hub.png" alt="Bartosz Jankowski" class="hero-photo">
+        <div class="hero-btns">
+          <a href="#project" class="btn btn-p" id="btn-proj"></a>
+          <a href="./CV_BJ_2026_FR.pdf" download class="btn btn-s" id="btn-cvfr"></a>
+          <a href="./CV_BJ_2026_EN.pdf" download class="btn btn-s" id="btn-cven"></a>
+        </div>
+      </div>
+      <div class="hero-right">
+        <p class="hero-school a d1" id="h-school"></p>
+        <h1 class="hero-h1 a d2" id="h-title"></h1>
+        <div class="hero-intro a d3">
+          <p id="h-intro1"></p>
+          <p id="h-intro2"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECT -->
+<section class="s-div" id="project">
+  <div class="wrap">
+    <div class="proj-top a">
+      <div>
+        <p class="s-label" id="p-tag"></p>
+        <h2 class="proj-name" id="p-name"></h2>
+        <p class="proj-fullname" id="p-fullname"></p>
+      </div>
+      <span class="proj-status" id="p-status"></span>
+    </div>
+    <p class="proj-subtitle a" id="p-subtitle"></p>
+
+    <div class="proj-blocks a">
+      <div class="p-block">
+        <p class="p-block-title" id="ctx-title"></p>
+        <p class="p-block-text"  id="ctx-text"></p>
+      </div>
+      <div class="p-block">
+        <p class="p-block-title" id="pb-title"></p>
+        <p class="p-block-text"  id="pb-text"></p>
+      </div>
+    </div>
+
+    <p class="arch-h a" id="arch-h"></p>
+    <div class="bricks a" id="bricks"></div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="s-div" id="skills">
+  <div class="wrap">
+    <p class="s-label a" id="sk-label"></p>
+    <div class="skills-grid a" id="skills-grid"></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="s-div" id="contact">
+  <div class="wrap">
+    <div class="contact-inner a">
+      <h2 class="contact-h"       id="ct-title"></h2>
+      <p  class="contact-closing" id="ct-closing"></p>
+      <p  class="contact-sub"     id="ct-sub"></p>
+      <p  class="contact-phone"><a href="tel:+33669547188">📞 +33 6 69 54 71 88</a></p>
+      <div class="contact-btns">
+        <a href="mailto:bjankowski@outlook.fr" class="btn btn-p" id="ct-email"></a>
+        <a href="https://www.linkedin.com/in/bartosz-jankowski-7a139346"
+           target="_blank" rel="noopener" class="btn btn-s" id="ct-li"></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer><span id="ft"></span></footer>
+
+<script>
+  function render(l) {
+    const c = CONTENT[l];
+    document.title = c.meta.title;
+    document.documentElement.lang = l;
+
+    document.getElementById('nl-about').textContent   = c.nav.about;
+    document.getElementById('nl-proj').textContent    = c.nav.project;
+    document.getElementById('nl-contact').textContent = c.nav.contact;
+
+    document.getElementById('h-school').textContent  = c.hero.school;
+    document.getElementById('h-title').textContent   = c.hero.title;
+    document.getElementById('h-intro1').textContent  = c.hero.intro1;
+    document.getElementById('h-intro2').textContent  = c.hero.intro2;
+    document.getElementById('btn-proj').textContent  = c.hero.btnProject;
+    document.getElementById('btn-cvfr').textContent  = c.hero.btnCVfr;
+    document.getElementById('btn-cven').textContent  = c.hero.btnCVen;
+
+    document.getElementById('p-tag').textContent      = c.project.tag;
+    document.getElementById('p-name').textContent     = c.project.name;
+    document.getElementById('p-fullname').textContent = c.project.fullName;
+    document.getElementById('p-status').textContent   = c.project.status;
+    document.getElementById('p-subtitle').textContent = c.project.subtitle;
+    document.getElementById('ctx-title').textContent  = c.project.contextTitle;
+    document.getElementById('ctx-text').textContent   = c.project.context;
+    document.getElementById('pb-title').textContent   = c.project.problemTitle;
+    document.getElementById('pb-text').textContent    = c.project.problem;
+    document.getElementById('arch-h').textContent     = c.project.archTitle;
+
+    document.getElementById('bricks').innerHTML = c.project.bricks.map(b => `
+      <div class="brick" data-s="${b.type}">
+        <div class="brick-bar"></div>
+        <div class="brick-n">${b.num}</div>
+        <div class="brick-tag">${b.tag}</div>
+        <div class="brick-name">${b.name}</div>
+        <div class="brick-desc">${b.desc}</div>
+        <span class="brick-badge">${b.statusLabel}</span>
+      </div>`).join('');
+
+    document.getElementById('sk-label').textContent = c.skills.title;
+    document.getElementById('skills-grid').innerHTML = c.skills.cols.map(col => `
+      <div class="sk-col">
+        <div class="sk-col-heading">${col.heading}</div>
+        ${col.groups.map(g => `
+          <div class="sk-group">
+            <div class="sk-group-label">${g.label}</div>
+            <ul>${g.items.map(i => `<li>${i}</li>`).join('')}</ul>
+          </div>`).join('')}
+      </div>`).join('');
+
+    document.getElementById('ct-title').textContent   = c.contact.title;
+    document.getElementById('ct-closing').textContent = c.contact.closing;
+    document.getElementById('ct-sub').textContent     = c.contact.sub;
+    document.getElementById('ct-email').textContent   = c.contact.btnEmail;
+    document.getElementById('ct-li').textContent      = c.contact.btnLinkedin;
+    document.getElementById('ft').textContent         = c.footer;
+
+    document.querySelectorAll('.lang-btn').forEach(b =>
+      b.classList.toggle('on', b.dataset.l === l));
+  }
+
+  document.querySelectorAll('.lang-btn').forEach(b =>
+    b.addEventListener('click', () => render(b.dataset.l)));
+
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.06 });
+
+  window.addEventListener('DOMContentLoaded', () => {
+    render('fr');
+    document.querySelectorAll('.a').forEach(el => io.observe(el));
+    setTimeout(() => {
+      document.querySelectorAll('.a').forEach(el => {
+        if (el.getBoundingClientRect().top < window.innerHeight * 1.1)
+          el.classList.add('in');
+      });
+    }, 80);
+  });
+</script>
+</body>
+</html>
