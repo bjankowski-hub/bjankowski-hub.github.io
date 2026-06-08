@@ -97,7 +97,7 @@ const CONTENT = {
       school: "MBA AI & Data Innovation · De Vinci Executive Education",
       title: "From product management to AI",
       intro1: "After 13 years in B2B product marketing across various industries, I decided to make a real pivot: putting AI and data at the heart of my professional practice. Why now? Because AI is profoundly transforming business functions, strategy and management. Better to be an actor in this transformation than a spectator.",
-      intro2: "That is why I am completing an MBA in AI & Data Innovation (RNCP Level 7) at De Vinci Executive Education. My thesis project is deployed on real industrial terrain and I am building it as a genuine consulting engagement, from needs definition to implementation, through to change management.",
+      intro2: "That is why I am completing an MBA in AI & Data Innovation at De Vinci Executive Education. My thesis project is deployed on real industrial terrain and I am building it as a genuine consulting engagement, from needs definition to implementation, through to change management.",
       btnProject: "View my project",
       btnCVfr: "CV Français ↓",
       btnCVen: "CV English ↓"
@@ -188,7 +188,7 @@ const CONTENT = {
       school: "MBA AI & Innowacje Danych · De Vinci Executive Education",
       title: "Od product managementu do AI",
       intro1: "Po 13 latach w marketingu produktowym B2B w różnych branżach, zdecydowałem się na prawdziwy zwrot: umieszczenie AI i danych w centrum mojej praktyki zawodowej. Dlaczego teraz? Ponieważ AI głęboko transformuje zawody, strategię i zarządzanie. Lepiej być aktorem tej transformacji niż widzem.",
-      intro2: "Właśnie dlatego realizuję MBA w zakresie AI & Innowacji Danych (RNCP Poziom 7) na De Vinci Executive Education. Mój projekt dyplomowy jest wdrażany na rzeczywistym terenie przemysłowym i buduję go jak prawdziwy projekt doradczy, od definicji potrzeb po wdrożenie i zarządzanie zmianą.",
+      intro2: "Właśnie dlatego realizuję MBA w zakresie AI & Innowacji Danych na De Vinci Executive Education. Mój projekt dyplomowy jest wdrażany na rzeczywistym terenie przemysłowym i buduję go jak prawdziwy projekt doradczy, od definicji potrzeb po wdrożenie i zarządzanie zmianą.",
       btnProject: "Zobacz mój projekt",
       btnCVfr: "CV Français ↓",
       btnCVen: "CV English ↓"
