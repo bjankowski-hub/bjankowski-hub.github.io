@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bartosz Jankowski — Réalisations</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:         #eef3f8;
+      --surface:    #ffffff;
+      --border:     #c4d4e4;
+      --border-l:   #d8e6f2;
+      --accent:     #2d5f9a;
+      --accent-dim: rgba(45,95,154,0.08);
+      --accent-ln:  rgba(45,95,154,0.22);
+      --ok:         #2d7a5a;
+      --ok-dim:     rgba(45,122,90,0.08);
+      --ok-ln:      rgba(45,122,90,0.25);
+      --warn:       #8a6200;
+      --warn-dim:   rgba(138,98,0,0.08);
+      --warn-ln:    rgba(138,98,0,0.25);
+      --text:       #162233;
+      --text-2:     #3a5268;
+      --text-3:     #7a98b8;
+      --font-h:     Georgia, 'Times New Roman', serif;
+      --font-b:     -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      --font-m:     'DM Mono', monospace;
+      --w:          1080px;
+      --px:         clamp(1.25rem, 4vw, 2.5rem);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-b);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    .wrap { max-width: var(--w); margin: 0 auto; padding: 0 var(--px); }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      background: rgba(238,243,248,.93);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: .8rem var(--px); max-width: var(--w); margin: 0 auto;
+    }
+    .nav-back {
+      font-family: var(--font-m); font-size: .72rem; color: var(--text-2);
+      text-decoration: none; display: flex; align-items: center; gap: .4rem;
+      transition: color .2s;
+    }
+    .nav-back:hover { color: var(--accent); }
+    .lang-sw { display: flex; align-items: center; gap: 2px; }
+    .lang-btn {
+      background: none; border: none; cursor: pointer;
+      font-family: var(--font-m); font-size: .72rem; font-weight: 400;
+      color: var(--text-3); padding: .2rem .45rem; border-radius: 2px;
+      border-bottom: 2px solid transparent; transition: all .2s; line-height: 1;
+      letter-spacing: .05em;
+    }
+    .lang-btn.on { color: var(--accent); border-bottom-color: var(--accent); font-weight: 600; }
+    .lang-btn:hover:not(.on) { color: var(--text-2); }
+    .lang-sep { color: var(--border); font-size: .7rem; padding: 0 2px; }
+
+    /* PAGE HEADER */
+    .page-header { padding: 6.5rem 0 2.5rem; }
+    .page-label {
+      font-family: var(--font-m); font-size: .68rem; color: var(--accent);
+      letter-spacing: .1em; text-transform: uppercase;
+      display: flex; align-items: center; gap: .5rem; margin-bottom: .9rem;
+    }
+    .page-label::before { content:''; width:16px; height:1px; background:var(--accent); }
+    .page-h1 {
+      font-family: var(--font-h); font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: normal; letter-spacing: -.02em; line-height: 1.15;
+      color: var(--text);
+    }
+
+    /* SECTION LABEL */
+    .s-div { border-top: 1px solid var(--border); }
+    .s-label {
+      font-family: var(--font-m); font-size: .68rem; color: var(--accent);
+      letter-spacing: .1em; text-transform: uppercase;
+      display: flex; align-items: center; gap: .5rem; margin-bottom: 2rem;
+    }
+    .s-label::before { content:''; width:16px; height:1px; background:var(--accent); }
+
+    /* PROJECT CARD */
+    section { padding: 4rem 0; }
+    .proj-card {
+      background: var(--surface);
+      border: 1px solid var(--border-l);
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 2rem;
+    }
+    .proj-card-header {
+      padding: 2rem 2.5rem 1.5rem;
+      border-bottom: 1px solid var(--border-l);
+      display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; flex-wrap: wrap;
+      position: relative;
+    }
+    .proj-card-header::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: var(--ok);
+    }
+    .proj-title {
+      font-family: var(--font-h); font-size: clamp(1.4rem, 2.5vw, 2rem);
+      font-weight: normal; letter-spacing: -.02em; color: var(--text);
+    }
+    .proj-subtitle-small {
+      font-family: var(--font-m); font-size: .7rem; color: var(--text-3);
+      margin-top: .3rem; letter-spacing: .03em;
+    }
+    .proj-badge {
+      font-family: var(--font-m); font-size: .63rem;
+      color: var(--ok); background: var(--ok-dim); border: 1px solid var(--ok-ln);
+      padding: .28rem .7rem; border-radius: 3px; white-space: nowrap;
+    }
+
+    .proj-card-body { padding: 2rem 2.5rem; }
+
+    /* BLOCKS GRID */
+    .blocks-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 2rem; }
+    .block {
+      background: var(--bg); border: 1px solid var(--border-l);
+      padding: 1.5rem; border-radius: 4px;
+    }
+    .block-title {
+      font-family: var(--font-m); font-size: .63rem; color: var(--accent);
+      letter-spacing: .1em; text-transform: uppercase; margin-bottom: .75rem;
+    }
+    .block-text { font-size: .875rem; color: var(--text-2); line-height: 1.8; text-align: justify; }
+
+    /* STACK */
+    .stack-row {
+      display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 2rem;
+    }
+    .stack-tag {
+      font-family: var(--font-m); font-size: .65rem;
+      color: var(--accent); background: var(--accent-dim); border: 1px solid var(--accent-ln);
+      padding: .25rem .65rem; border-radius: 3px;
+    }
+
+    /* WORKFLOW IMAGE */
+    .workflow-img-wrap {
+      margin-bottom: 2rem;
+      border: 1px solid var(--border-l); border-radius: 4px; overflow: hidden;
+    }
+    .workflow-img-label {
+      font-family: var(--font-m); font-size: .63rem; color: var(--text-3);
+      letter-spacing: .08em; text-transform: uppercase;
+      padding: .6rem 1rem; background: var(--bg);
+      border-bottom: 1px solid var(--border-l);
+    }
+    .workflow-img-wrap img {
+      width: 100%; display: block;
+    }
+
+    /* NODES */
+    .nodes-section { margin-bottom: 2rem; }
+    .nodes-label {
+      font-family: var(--font-m); font-size: .63rem; color: var(--accent);
+      letter-spacing: .1em; text-transform: uppercase; margin-bottom: 1rem;
+    }
+    .nodes-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: .75rem;
+    }
+    .node-item {
+      background: var(--bg); border: 1px solid var(--border-l);
+      border-radius: 3px; padding: 1rem 1.1rem;
+      display: flex; gap: .75rem; align-items: flex-start;
+    }
+    .node-num {
+      font-family: var(--font-m); font-size: .62rem; color: var(--accent);
+      font-weight: 400; white-space: nowrap; padding-top: .05rem;
+    }
+    .node-content {}
+    .node-name { font-size: .82rem; font-weight: 500; color: var(--text); margin-bottom: .2rem; }
+    .node-desc { font-size: .78rem; color: var(--text-2); line-height: 1.6; }
+
+    /* LEARNINGS */
+    .learnings-section {}
+    .learnings-label {
+      font-family: var(--font-m); font-size: .63rem; color: var(--accent);
+      letter-spacing: .1em; text-transform: uppercase; margin-bottom: 1rem;
+    }
+    .learnings-list {
+      display: grid; grid-template-columns: 1fr 1fr; gap: .5rem;
+    }
+    .learning-item {
+      display: flex; gap: .6rem; align-items: flex-start;
+      padding: .7rem .9rem; background: var(--bg);
+      border: 1px solid var(--border-l); border-radius: 3px;
+      font-size: .82rem; color: var(--text-2); line-height: 1.55;
+    }
+    .learning-item::before {
+      content: '↳'; color: var(--ok); font-size: .75rem;
+      flex-shrink: 0; margin-top: .05rem;
+    }
+
+    /* COMING SOON */
+    .coming-soon {
+      background: var(--surface); border: 1px dashed var(--border);
+      border-radius: 6px; padding: 3rem 2rem;
+      text-align: center; color: var(--text-3);
+    }
+    .coming-soon-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .coming-soon-title {
+      font-family: var(--font-h); font-size: 1.1rem; color: var(--text-2);
+      margin-bottom: .5rem;
+    }
+    .coming-soon-sub { font-family: var(--font-m); font-size: .72rem; }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1.5rem var(--px);
+      font-family: var(--font-m); font-size: .68rem; color: var(--text-3);
+      text-align: center;
+    }
+
+    /* ANIMATIONS */
+    .a { opacity: 0; transform: translateY(16px); transition: opacity .55s ease, transform .55s ease; }
+    .a.in { opacity: 1; transform: none; }
+    .d1 { transition-delay: .08s; }
+    .d2 { transition-delay: .16s; }
+    .d3 { transition-delay: .24s; }
+
+    @media (max-width: 700px) {
+      .blocks-2 { grid-template-columns: 1fr; }
+      .nodes-grid { grid-template-columns: 1fr 1fr; }
+      .learnings-list { grid-template-columns: 1fr; }
+      .proj-card-header { flex-direction: column; }
+    }
+    @media (max-width: 480px) {
+      .nodes-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="./index.html" class="nav-back" id="nav-back">← <span id="nav-back-label">Retour</span></a>
+    <div class="lang-sw">
+      <button class="lang-btn" data-l="fr">FR</button>
+      <span class="lang-sep">·</span>
+      <button class="lang-btn" data-l="en">EN</button>
+      <span class="lang-sep">·</span>
+      <button class="lang-btn" data-l="pl">PL</button>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="wrap">
+    <p class="page-label a" id="page-label"></p>
+    <h1 class="page-h1 a d1" id="page-title"></h1>
+  </div>
+</div>
+
+<!-- PERSONAL PROJECTS -->
+<section class="s-div">
+  <div class="wrap">
+    <p class="s-label a" id="section-personal"></p>
+
+    <!-- AGENT DOC ANALYZER CARD -->
+    <div class="proj-card a d1">
+      <div class="proj-card-header">
+        <div>
+          <h2 class="proj-title" id="p-title"></h2>
+          <p class="proj-subtitle-small" id="p-subtitle"></p>
+        </div>
+        <span class="proj-badge" id="p-badge"></span>
+      </div>
+
+      <div class="proj-card-body">
+
+        <!-- BLOCKS: Objective + Stack -->
+        <div class="blocks-2 a d2">
+          <div class="block">
+            <p class="block-title" id="b-obj-title"></p>
+            <p class="block-text" id="b-obj-text"></p>
+          </div>
+          <div class="block">
+            <p class="block-title" id="b-usecase-title"></p>
+            <p class="block-text" id="b-usecase-text"></p>
+          </div>
+        </div>
+
+        <!-- STACK TAGS -->
+        <div class="stack-row a d2" id="stack-tags"></div>
+
+        <!-- WORKFLOW IMAGE -->
+        <div class="workflow-img-wrap a d3">
+          <div class="workflow-img-label" id="img-label"></div>
+          <img src="./workflow_doc_analyzer.png" alt="Workflow n8n Agent Doc Analyzer">
+        </div>
+
+        <!-- 9 NODES -->
+        <div class="nodes-section a d3">
+          <p class="nodes-label" id="nodes-label"></p>
+          <div class="nodes-grid" id="nodes-grid"></div>
+        </div>
+
+        <!-- LEARNINGS -->
+        <div class="learnings-section a d3">
+          <p class="learnings-label" id="learnings-label"></p>
+          <div class="learnings-list" id="learnings-list"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<footer><span id="ft"></span></footer>
+
+<script>
+const R = {
+  fr: {
+    navBack: "Retour",
+    pageLabel: "Portfolio",
+    pageTitle: "Mes réalisations",
+    sectionPersonal: "Réalisations personnelles",
+    sectionPro: "Réalisations professionnelles",
+    badge: "Livré ✓",
+    pTitle: "Agent Doc Analyzer",
+    pSubtitle: "Workflow n8n d'analyse de transcriptions de réunion",
+    objTitle: "Objectif",
+    objText: "Projet d'entraînement personnel pour prendre en main n8n, Docker et l'intégration d'API LLM dans un contexte concret. L'objectif n'est pas d'être innovant — l'outil existe sous des dizaines de formes — mais de comprendre concrètement comment orchestrer un workflow IA de bout en bout en local.",
+    usecaseTitle: "Cas d'usage",
+    usecaseText: "Analyser automatiquement des transcriptions de réunion au format TXT ou PDF et recevoir un compte-rendu structuré par email en moins de 5 secondes.",
+    stack: ["n8n (Docker, auto-hébergé)", "Groq API · Llama 3.3 70B", "Gmail OAuth2", "JavaScript", "Google Cloud Console"],
+    imgLabel: "Aperçu du workflow n8n — 9 nœuds",
+    nodesLabel: "Le workflow — 9 nœuds",
+    nodes: [
+      { num: "01", name: "Form Trigger", desc: "Formulaire web avec upload de fichier. Déclenche le workflow sans ouvrir n8n." },
+      { num: "02", name: "IF", desc: "Détecte le type de fichier (mimeType) et route vers la bonne branche." },
+      { num: "03", name: "Extract PDF / TXT", desc: "Extraction du texte brut selon le format du fichier déposé." },
+      { num: "04", name: "Merge", desc: "Réunification des deux branches (PDF et TXT) en un seul flux." },
+      { num: "05", name: "Anonymize", desc: "Substitution par regex : noms de personnes et entités sensibles remplacés par des tokens neutres (PERSONNE_1, SOCIETE_1…) avant d'atteindre le LLM." },
+      { num: "06", name: "Basic LLM Chain + Groq", desc: "Analyse structurée en 9 sections : résumé exécutif, décisions, actions, verbatims, signaux faibles, etc." },
+      { num: "07", name: "De-anonymize", desc: "Restauration des vrais noms dans la synthèse finale après traitement LLM." },
+      { num: "08", name: "Gmail", desc: "Envoi du compte-rendu HTML avec sujet dynamique horodaté." },
+      { num: "09", name: "Groq Chat Model", desc: "Modèle LLM sous-jacent : Llama 3.3 70B via l'API Groq (gratuit)." }
+    ],
+    learningsLabel: "Ce que j'ai appris",
+    learnings: [
+      "Configurer n8n en local via Docker avec des volumes montés sur Windows",
+      "Orchestrer un workflow IA multi-étapes sans écrire de serveur custom",
+      "Connecter une API LLM externe (Groq) via les nœuds natifs n8n",
+      "Mettre en place une authentification OAuth2 Gmail depuis Google Cloud Console",
+      "Utiliser les nœuds Code JavaScript pour du traitement de texte dans un workflow",
+      "Implémenter un pattern d'anonymisation avant LLM et de restauration après",
+      "La différence concrète entre image Docker et container, entre volume bind et volume nommé",
+      "Déboguer un workflow nœud par nœud en lisant les OUTPUT n8n"
+    ],
+    comingTitle: "À venir",
+    comingSub: "Des réalisations professionnelles seront ajoutées prochainement.",
+    footer: "© 2026 Bartosz Jankowski · Lyon, France"
+  },
+
+  en: {
+    navBack: "Back",
+    pageLabel: "Portfolio",
+    pageTitle: "My projects",
+    sectionPersonal: "Personal projects",
+    sectionPro: "Professional projects",
+    badge: "Delivered ✓",
+    pTitle: "Agent Doc Analyzer",
+    pSubtitle: "n8n workflow for meeting transcript analysis",
+    objTitle: "Objective",
+    objText: "A personal training project to get hands-on with n8n, Docker, and LLM API integration in a concrete context. The goal is not to be innovative — the tool exists in dozens of forms — but to concretely understand how to orchestrate an end-to-end AI workflow locally.",
+    usecaseTitle: "Use case",
+    usecaseText: "Automatically analyse meeting transcripts in TXT or PDF format and receive a structured summary by email in under 5 seconds.",
+    stack: ["n8n (Docker, self-hosted)", "Groq API · Llama 3.3 70B", "Gmail OAuth2", "JavaScript", "Google Cloud Console"],
+    imgLabel: "n8n workflow overview — 9 nodes",
+    nodesLabel: "The workflow — 9 nodes",
+    nodes: [
+      { num: "01", name: "Form Trigger", desc: "Web form with file upload. Triggers the workflow without opening n8n." },
+      { num: "02", name: "IF", desc: "Detects the file type (mimeType) and routes to the correct branch." },
+      { num: "03", name: "Extract PDF / TXT", desc: "Raw text extraction depending on the uploaded file format." },
+      { num: "04", name: "Merge", desc: "Merges the two branches (PDF and TXT) into a single stream." },
+      { num: "05", name: "Anonymize", desc: "Regex substitution: person names and sensitive entities replaced by neutral tokens (PERSON_1, COMPANY_1…) before reaching the LLM." },
+      { num: "06", name: "Basic LLM Chain + Groq", desc: "Structured analysis in 9 sections: executive summary, decisions, actions, verbatims, weak signals, etc." },
+      { num: "07", name: "De-anonymize", desc: "Restores the real names in the final summary after LLM processing." },
+      { num: "08", name: "Gmail", desc: "Sends the HTML summary with a dynamic timestamped subject line." },
+      { num: "09", name: "Groq Chat Model", desc: "Underlying LLM model: Llama 3.3 70B via the Groq API (free tier)." }
+    ],
+    learningsLabel: "What I learned",
+    learnings: [
+      "Configuring n8n locally via Docker with bind-mounted volumes on Windows",
+      "Orchestrating a multi-step AI workflow without writing a custom server",
+      "Connecting an external LLM API (Groq) via native n8n nodes",
+      "Setting up Gmail OAuth2 authentication from Google Cloud Console",
+      "Using JavaScript Code nodes for text processing within a workflow",
+      "Implementing a pre-LLM anonymisation and post-LLM restoration pattern",
+      "The concrete difference between a Docker image and container, bind vs named volumes",
+      "Debugging a workflow node by node by reading n8n OUTPUT panels"
+    ],
+    comingTitle: "Coming soon",
+    comingSub: "Professional projects will be added shortly.",
+    footer: "© 2026 Bartosz Jankowski · Lyon, France"
+  },
+
+  pl: {
+    navBack: "Powrót",
+    pageLabel: "Portfolio",
+    pageTitle: "Moje realizacje",
+    sectionPersonal: "Realizacje osobiste",
+    sectionPro: "Realizacje zawodowe",
+    badge: "Ukończony ✓",
+    pTitle: "Agent Doc Analyzer",
+    pSubtitle: "Workflow n8n do analizy transkrypcji spotkań",
+    objTitle: "Cel",
+    objText: "Osobisty projekt treningowy, aby opanować n8n, Docker i integrację API LLM w konkretnym kontekście. Celem nie jest innowacja — narzędzie istnieje w dziesiątkach form — ale konkretne zrozumienie, jak lokalnie orkiestrować kompleksowy workflow AI od A do Z.",
+    usecaseTitle: "Przypadek użycia",
+    usecaseText: "Automatyczna analiza transkrypcji spotkań w formacie TXT lub PDF i otrzymanie ustrukturyzowanego podsumowania e-mailem w mniej niż 5 sekund.",
+    stack: ["n8n (Docker, self-hosted)", "Groq API · Llama 3.3 70B", "Gmail OAuth2", "JavaScript", "Google Cloud Console"],
+    imgLabel: "Podgląd workflow n8n — 9 węzłów",
+    nodesLabel: "Workflow — 9 węzłów",
+    nodes: [
+      { num: "01", name: "Form Trigger", desc: "Formularz webowy z przesyłaniem pliku. Uruchamia workflow bez otwierania n8n." },
+      { num: "02", name: "IF", desc: "Wykrywa typ pliku (mimeType) i kieruje do właściwej gałęzi." },
+      { num: "03", name: "Extract PDF / TXT", desc: "Ekstrakcja surowego tekstu w zależności od formatu przesłanego pliku." },
+      { num: "04", name: "Merge", desc: "Łączy dwie gałęzie (PDF i TXT) w jeden strumień." },
+      { num: "05", name: "Anonymize", desc: "Podstawianie regex: imiona i wrażliwe podmioty zastępowane neutralnymi tokenami (OSOBA_1, FIRMA_1…) przed dotarciem do LLM." },
+      { num: "06", name: "Basic LLM Chain + Groq", desc: "Ustrukturyzowana analiza w 9 sekcjach: streszczenie, decyzje, działania, cytaty, słabe sygnały, itp." },
+      { num: "07", name: "De-anonymize", desc: "Przywracanie prawdziwych nazw w ostatecznym podsumowaniu po przetwarzaniu przez LLM." },
+      { num: "08", name: "Gmail", desc: "Wysyłanie podsumowania HTML z dynamicznym tematem ze znacznikiem czasu." },
+      { num: "09", name: "Groq Chat Model", desc: "Bazowy model LLM: Llama 3.3 70B przez API Groq (darmowy plan)." }
+    ],
+    learningsLabel: "Czego się nauczyłem",
+    learnings: [
+      "Konfigurowanie n8n lokalnie przez Docker z woluminami bind-mount na Windows",
+      "Orkiestrowanie wieloetapowego workflow AI bez pisania własnego serwera",
+      "Podłączenie zewnętrznego API LLM (Groq) przez natywne węzły n8n",
+      "Konfiguracja uwierzytelniania Gmail OAuth2 z Google Cloud Console",
+      "Używanie węzłów Code JavaScript do przetwarzania tekstu w workflow",
+      "Implementacja wzorca anonimizacji przed LLM i przywracania po LLM",
+      "Praktyczna różnica między obrazem Docker a kontenerem, woluminem bind vs nazwanym",
+      "Debugowanie workflow węzeł po węźle przez czytanie OUTPUT paneli n8n"
+    ],
+    comingTitle: "Wkrótce",
+    comingSub: "Realizacje zawodowe zostaną dodane wkrótce.",
+    footer: "© 2026 Bartosz Jankowski · Lyon, Francja"
+  }
+};
+
+function render(l) {
+  const c = R[l];
+  document.documentElement.lang = l;
+  document.title = "Bartosz Jankowski — " + c.pageTitle;
+
+  document.getElementById('nav-back-label').textContent = c.navBack;
+  document.getElementById('page-label').textContent     = c.pageLabel;
+  document.getElementById('page-title').textContent     = c.pageTitle;
+  document.getElementById('section-personal').textContent = c.sectionPersonal;
+  document.getElementById('section-pro').textContent    = c.sectionPro;
+  document.getElementById('p-badge').textContent        = c.badge;
+  document.getElementById('p-title').textContent        = c.pTitle;
+  document.getElementById('p-subtitle').textContent     = c.pSubtitle;
+  document.getElementById('b-obj-title').textContent    = c.objTitle;
+  document.getElementById('b-obj-text').textContent     = c.objText;
+  document.getElementById('b-usecase-title').textContent = c.usecaseTitle;
+  document.getElementById('b-usecase-text').textContent  = c.usecaseText;
+  document.getElementById('img-label').textContent      = c.imgLabel;
+  document.getElementById('nodes-label').textContent    = c.nodesLabel;
+  document.getElementById('learnings-label').textContent = c.learningsLabel;
+  document.getElementById('ft').textContent             = c.footer;
+
+  document.getElementById('stack-tags').innerHTML = c.stack.map(s =>
+    `<span class="stack-tag">${s}</span>`).join('');
+
+  document.getElementById('nodes-grid').innerHTML = c.nodes.map(n => `
+    <div class="node-item">
+      <span class="node-num">${n.num}</span>
+      <div class="node-content">
+        <div class="node-name">${n.name}</div>
+        <div class="node-desc">${n.desc}</div>
+      </div>
+    </div>`).join('');
+
+  document.getElementById('learnings-list').innerHTML = c.learnings.map(l =>
+    `<div class="learning-item">${l}</div>`).join('');
+
+  document.querySelectorAll('.lang-btn').forEach(b =>
+    b.classList.toggle('on', b.dataset.l === l));
+}
+
+document.querySelectorAll('.lang-btn').forEach(b =>
+  b.addEventListener('click', () => render(b.dataset.l)));
+
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: 0.05 });
+
+window.addEventListener('DOMContentLoaded', () => {
+  render('fr');
+  const els = document.querySelectorAll('.a');
+  els.forEach(el => io.observe(el));
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    els.forEach(el => {
+      if (el.getBoundingClientRect().top < window.innerHeight + 50)
+        el.classList.add('in');
+    });
+  }));
+});
+</script>
+</body>
+</html>
