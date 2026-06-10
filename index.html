@@ -281,7 +281,6 @@
         <p class="hero-name">Bartosz JANKOWSKI</p>
         <div class="hero-btns">
           <a href="#project" class="btn btn-p" id="btn-proj"></a>
-          <a href="./realisations.html" class="btn btn-s" id="btn-real"></a>
           <a href="./CV_BJ_2026_FR.pdf" download class="btn btn-s" id="btn-cvfr"></a>
           <a href="./CV_BJ_2026_EN.pdf" download class="btn btn-s" id="btn-cven"></a>
           <div class="hero-contact-btns">
@@ -375,6 +374,7 @@
     document.getElementById('h-intro2').textContent  = c.hero.intro2;
     document.getElementById('btn-proj').textContent  = c.hero.btnProject;
     document.getElementById('btn-real').textContent  = c.hero.btnRealisations;
+    document.getElementById('btn-real').href         = './realisations.html?lang=' + l;
     document.getElementById('btn-cvfr').textContent  = c.hero.btnCVfr;
     document.getElementById('btn-cven').textContent  = c.hero.btnCVen;
 

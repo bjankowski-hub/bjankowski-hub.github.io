@@ -307,7 +307,7 @@
         <!-- WORKFLOW IMAGE -->
         <div class="workflow-img-wrap a d3">
           <div class="workflow-img-label" id="img-label"></div>
-          <img src="./workflow_doc_analyzer.png" alt="Workflow n8n Agent Doc Analyzer">
+          <img src="./n8n_agent_workflow.png" alt="Workflow n8n Agent Doc Analyzer">
         </div>
 
         <!-- 9 NODES -->
@@ -503,14 +503,20 @@ function render(l) {
 }
 
 document.querySelectorAll('.lang-btn').forEach(b =>
-  b.addEventListener('click', () => render(b.dataset.l)));
+  b.addEventListener('click', () => {
+    const l = b.dataset.l;
+    history.replaceState(null, '', '?lang=' + l);
+    render(l);
+  }));
 
 const io = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
 }, { threshold: 0.05 });
 
 window.addEventListener('DOMContentLoaded', () => {
-  render('fr');
+  const urlParams = new URLSearchParams(window.location.search);
+  const lang = ['fr','en','pl'].includes(urlParams.get('lang')) ? urlParams.get('lang') : 'fr';
+  render(lang);
   const els = document.querySelectorAll('.a');
   els.forEach(el => io.observe(el));
   requestAnimationFrame(() => requestAnimationFrame(() => {
