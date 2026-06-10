@@ -7,7 +7,8 @@ const CONTENT = {
       title: "Du product management à l'IA",
       intro1: "Après 13 ans en marketing produits B2B dans diverses industries, j'ai décidé de prendre un vrai tournant : mettre l'IA et la data au cœur de ma pratique professionnelle. Pourquoi maintenant ? Parce que l'IA transforme en profondeur les métiers, la stratégie et le management. Alors autant être acteur de cette transformation, pas spectateur.",
       intro2: "C'est pour cette raison que je prépare un MBA IA & Data Innovation (RNCP Niveau 7) à De Vinci Executive Education. Ma thèse-projet est déployée sur terrain industriel réel et je la construis comme un vrai projet d'accompagnement, de la définition du besoin à l'implémentation, jusqu'à la conduite du changement.",
-      btnProject: "Voir mon projet",
+      btnProject: "Mon projet MBA",
+      btnRealisations: "Mes réalisations →",
       btnCVfr: "CV Français ↓",
       btnCVen: "CV English ↓"
     },
@@ -47,35 +48,17 @@ const CONTENT = {
         {
           heading: "Produit & Business",
           groups: [
-            {
-              label: "Pilotage produit",
-              items: ["Cycle de vie produit B2B", "Roadmap & priorisation", "Rédaction de spécifications produit", "Coordination transverse R&D / Marketing / Commerce", "Pilotage de projets d'innovation B2B"]
-            },
-            {
-              label: "Analyse & Marché",
-              items: ["Analyse de marché & qualification du besoin", "Études qualitatives & quantitatives", "Focus groupes & insights utilisateurs"]
-            },
-            {
-              label: "Business & ROI",
-              items: ["Positionnement prix & rentabilité", "Business case & construction de KPIs", "Gestion de P&L", "Alignement parties prenantes multi-niveaux"]
-            }
+            { label: "Pilotage produit", items: ["Cycle de vie produit B2B", "Roadmap & priorisation", "Rédaction de spécifications produit", "Coordination transverse R&D / Marketing / Commerce", "Pilotage de projets d'innovation B2B"] },
+            { label: "Analyse & Marché", items: ["Analyse de marché & qualification du besoin", "Études qualitatives & quantitatives", "Focus groupes & insights utilisateurs"] },
+            { label: "Business & ROI", items: ["Positionnement prix & rentabilité", "Business case & construction de KPIs", "Gestion de P&L", "Alignement parties prenantes multi-niveaux"] }
           ]
         },
         {
           heading: "IA & Data",
           groups: [
-            {
-              label: "Architecture IA",
-              items: ["Frameworks agentiques (LLM, RAG)", "LangGraph orchestration", "Human-in-the-loop design", "Machine learning & IA générative"]
-            },
-            {
-              label: "Gouvernance & Conformité",
-              items: ["EU AI Act compliance", "Gouvernance & éthique de l'IA", "Enjeux juridiques de la donnée"]
-            },
-            {
-              label: "Outils & Développement",
-              items: ["Claude / Anthropic API", "n8n workflow automation", "Prompt engineering", "Évangélisation produit IA auprès des métiers"]
-            }
+            { label: "Architecture IA", items: ["Frameworks agentiques (LLM, RAG)", "LangGraph orchestration", "Human-in-the-loop design", "Machine learning & IA générative"] },
+            { label: "Gouvernance & Conformité", items: ["EU AI Act compliance", "Gouvernance & éthique de l'IA", "Enjeux juridiques de la donnée"] },
+            { label: "Outils & Développement", items: ["Claude / Anthropic API", "n8n workflow automation", "Prompt engineering", "Évangélisation produit IA auprès des métiers"] }
           ]
         }
       ]
@@ -98,7 +81,8 @@ const CONTENT = {
       title: "From product management to AI",
       intro1: "After 13 years in B2B product marketing across various industries, I decided to make a real pivot: putting AI and data at the heart of my professional practice. Why now? Because AI is profoundly transforming business functions, strategy and management. Better to be an actor in this transformation than a spectator.",
       intro2: "That is why I am completing an MBA in AI & Data Innovation at De Vinci Executive Education. My thesis project is deployed on real industrial terrain and I am building it as a genuine consulting engagement, from needs definition to implementation, through to change management.",
-      btnProject: "View my project",
+      btnProject: "My MBA Project",
+      btnRealisations: "My projects →",
       btnCVfr: "CV Français ↓",
       btnCVen: "CV English ↓"
     },
@@ -114,22 +98,10 @@ const CONTENT = {
       problem: "To what extent can AI, supported by structured and legally compliant data governance, automate the identification of competitive alternatives and optimise pricing strategies — and what measurable impact does this combination generate on operational performance and price competitiveness?",
       archTitle: "Study Architecture",
       bricks: [
-        {
-          num: "01", name: "Data Governance", tag: "Foundation", type: "cadre", statusLabel: "Architected",
-          desc: "Data normalization, GDPR compliance, EU AI Act alignment, competitive data legality (Art. 101 TFUE). Non-AI prerequisite: necessary condition for B2 and B3 to produce reliable, legally defensible outputs."
-        },
-        {
-          num: "02", name: "AI Cross-Referencing", tag: "Contribution #1", type: "poc", statusLabel: "POC in progress",
-          desc: "Internal reconciliation and identification of competitive alternatives by reference. Structured matching complemented by NLP and semantic embeddings as fallback."
-        },
-        {
-          num: "03", name: "Multi-Scenario Pricing Engine", tag: "Contribution #2", type: "poc", statusLabel: "POC in progress",
-          desc: "Three simultaneous recommendations: business rules via RAG, gross margin floor, price-elasticity model on historical data. Log-log regression on a 12-month rolling window, with a reliability indicator per reference. Goal: reduce analysis time and optimise decision-making."
-        },
-        {
-          num: "04", name: "Integrated Interface", tag: "Resultant", type: "todo", statusLabel: "To build",
-          desc: "End-to-end dashboard with mandatory human validation. Interface designed for non-data profiles; no ML expertise required."
-        }
+        { num: "01", name: "Data Governance", tag: "Foundation", type: "cadre", statusLabel: "Architected", desc: "Data normalization, GDPR compliance, EU AI Act alignment, competitive data legality (Art. 101 TFUE). Non-AI prerequisite: necessary condition for B2 and B3 to produce reliable, legally defensible outputs." },
+        { num: "02", name: "AI Cross-Referencing", tag: "Contribution #1", type: "poc", statusLabel: "POC in progress", desc: "Internal reconciliation and identification of competitive alternatives by reference. Structured matching complemented by NLP and semantic embeddings as fallback." },
+        { num: "03", name: "Multi-Scenario Pricing Engine", tag: "Contribution #2", type: "poc", statusLabel: "POC in progress", desc: "Three simultaneous recommendations: business rules via RAG, gross margin floor, price-elasticity model on historical data. Log-log regression on a 12-month rolling window, with a reliability indicator per reference. Goal: reduce analysis time and optimise decision-making." },
+        { num: "04", name: "Integrated Interface", tag: "Output", type: "todo", statusLabel: "To build", desc: "End-to-end dashboard with mandatory human validation. Interface designed for non-data profiles; no ML expertise required." }
       ]
     },
     skills: {
@@ -138,35 +110,17 @@ const CONTENT = {
         {
           heading: "Product & Business",
           groups: [
-            {
-              label: "Product management",
-              items: ["B2B product lifecycle management", "Roadmap & prioritisation", "Product specification writing", "Cross-functional coordination R&D / Marketing / Sales", "B2B innovation project management"]
-            },
-            {
-              label: "Market & Analysis",
-              items: ["Market analysis & needs qualification", "Qualitative & quantitative research", "Focus groups & user insights"]
-            },
-            {
-              label: "Business & ROI",
-              items: ["Pricing positioning & profitability", "Business case & KPI construction", "P&L management", "Multi-level stakeholder alignment"]
-            }
+            { label: "Product management", items: ["B2B product lifecycle", "Roadmap & prioritisation", "Product specification writing", "Cross-functional coordination R&D / Marketing / Sales", "B2B innovation project management"] },
+            { label: "Market & Analysis", items: ["Market analysis & needs qualification", "Qualitative & quantitative research", "Focus groups & user insights"] },
+            { label: "Business & ROI", items: ["Pricing positioning & profitability", "Business case & KPI construction", "P&L management", "Multi-level stakeholder alignment"] }
           ]
         },
         {
           heading: "AI & Data",
           groups: [
-            {
-              label: "AI Architecture",
-              items: ["Agentic frameworks (LLM, RAG)", "LangGraph orchestration", "Human-in-the-loop design", "Machine learning & generative AI"]
-            },
-            {
-              label: "Governance & Compliance",
-              items: ["EU AI Act compliance", "AI governance & ethics", "Data legal framework"]
-            },
-            {
-              label: "Tools & Development",
-              items: ["Claude / Anthropic API", "n8n workflow automation", "Prompt engineering", "AI product evangelism (tech → business)"]
-            }
+            { label: "AI Architecture", items: ["Agentic frameworks (LLM, RAG)", "LangGraph orchestration", "Human-in-the-loop design", "Machine learning & generative AI"] },
+            { label: "Governance & Compliance", items: ["EU AI Act compliance", "AI governance & ethics", "Data legal framework"] },
+            { label: "Tools & Development", items: ["Claude / Anthropic API", "n8n workflow automation", "Prompt engineering", "AI product evangelism (tech → business)"] }
           ]
         }
       ]
@@ -189,7 +143,8 @@ const CONTENT = {
       title: "Od product managementu do AI",
       intro1: "Po 13 latach w marketingu produktowym B2B w różnych branżach, zdecydowałem się na prawdziwy zwrot: umieszczenie AI i danych w centrum mojej praktyki zawodowej. Dlaczego teraz? Ponieważ AI głęboko transformuje zawody, strategię i zarządzanie. Lepiej być aktorem tej transformacji niż widzem.",
       intro2: "Właśnie dlatego realizuję MBA w zakresie AI & Innowacji Danych na De Vinci Executive Education. Mój projekt dyplomowy jest wdrażany na rzeczywistym terenie przemysłowym i buduję go jak prawdziwy projekt doradczy, od definicji potrzeb po wdrożenie i zarządzanie zmianą.",
-      btnProject: "Zobacz mój projekt",
+      btnProject: "Mój Projekt MBA",
+      btnRealisations: "Moje realizacje →",
       btnCVfr: "CV Français ↓",
       btnCVen: "CV English ↓"
     },
@@ -205,22 +160,10 @@ const CONTENT = {
       problem: "W jakim stopniu AI, oparta na ustrukturyzowanym zarządzaniu danymi zgodnym z wymogami prawnymi, może zautomatyzować identyfikację alternatyw konkurencyjnych i zoptymalizować strategie cenowe — i jaki mierzalny wpływ ma ta kombinacja na efektywność operacyjną i konkurencyjność cenową?",
       archTitle: "Architektura badania",
       bricks: [
-        {
-          num: "01", name: "Zarządzanie Danymi", tag: "Fundament", type: "cadre", statusLabel: "Zaplanowane",
-          desc: "Normalizacja danych, zgodność z RODO, EU AI Act, legalność danych konkurencyjnych (Art. 101 TFUE). Warunek konieczny: B2 i B3 mogą dostarczać wiarygodne i prawnie uzasadnione wyniki tylko na tej podstawie."
-        },
-        {
-          num: "02", name: "Cross-Referencowanie AI", tag: "Wkład #1", type: "poc", statusLabel: "POC w toku",
-          desc: "Wewnętrzna reconciliacja i identyfikacja alternatyw konkurencyjnych wg referencji. Dopasowanie strukturalne uzupełnione przez NLP i embeddingi semantyczne."
-        },
-        {
-          num: "03", name: "Wieloscenariuszowy Silnik Cenowy", tag: "Wkład #2", type: "poc", statusLabel: "POC w toku",
-          desc: "Trzy jednoczesne rekomendacje: reguły biznesowe przez RAG, próg marży brutto, model elastyczności cenowej na danych historycznych. Regresja log-log na 12-miesięcznym oknie kroczącym, z wskaźnikiem wiarygodności. Cel: skrócenie czasu analizy i optymalizacja decyzji."
-        },
-        {
-          num: "04", name: "Zintegrowany Interfejs", tag: "Wypadkowa", type: "todo", statusLabel: "Do zbudowania",
-          desc: "Kompleksowy dashboard z obowiązkową walidacją ludzką. Interfejs dla profili niezdatowych; nie wymaga wiedzy ML."
-        }
+        { num: "01", name: "Zarządzanie Danymi", tag: "Fundament", type: "cadre", statusLabel: "Zaplanowane", desc: "Normalizacja danych, zgodność z RODO, EU AI Act, legalność danych konkurencyjnych (Art. 101 TFUE). Warunek konieczny: B2 i B3 mogą dostarczać wiarygodne i prawnie uzasadnione wyniki tylko na tej podstawie." },
+        { num: "02", name: "Cross-Referencowanie AI", tag: "Wkład #1", type: "poc", statusLabel: "POC w toku", desc: "Wewnętrzna reconciliacja i identyfikacja alternatyw konkurencyjnych wg referencji. Dopasowanie strukturalne uzupełnione przez NLP i embeddingi semantyczne." },
+        { num: "03", name: "Wieloscenariuszowy Silnik Cenowy", tag: "Wkład #2", type: "poc", statusLabel: "POC w toku", desc: "Trzy jednoczesne rekomendacje: reguły biznesowe przez RAG, próg marży brutto, model elastyczności cenowej na danych historycznych. Regresja log-log na 12-miesięcznym oknie kroczącym, z wskaźnikiem wiarygodności. Cel: skrócenie czasu analizy i optymalizacja decyzji." },
+        { num: "04", name: "Zintegrowany Interfejs", tag: "Wypadkowa", type: "todo", statusLabel: "Do zbudowania", desc: "Kompleksowy dashboard z obowiązkową walidacją ludzką. Interfejs dla profili niezdatowych; nie wymaga wiedzy ML." }
       ]
     },
     skills: {
@@ -229,35 +172,17 @@ const CONTENT = {
         {
           heading: "Produkt & Biznes",
           groups: [
-            {
-              label: "Zarządzanie produktem",
-              items: ["Cykl życia produktu B2B", "Roadmapa i priorytety", "Pisanie specyfikacji produktu", "Koordynacja R&D / Marketing / Sprzedaż", "Zarządzanie projektami innowacyjnymi B2B"]
-            },
-            {
-              label: "Rynek & Analiza",
-              items: ["Analiza rynku i kwalifikacja potrzeb", "Badania jakościowe i ilościowe", "Grupy fokusowe i insights"]
-            },
-            {
-              label: "Biznes & ROI",
-              items: ["Pozycjonowanie cenowe i rentowność", "Business case i KPI", "Zarządzanie P&L", "Alignment wielopoziomowy"]
-            }
+            { label: "Zarządzanie produktem", items: ["Cykl życia produktu B2B", "Roadmapa i priorytety", "Pisanie specyfikacji produktu", "Koordynacja R&D / Marketing / Sprzedaż", "Zarządzanie projektami innowacyjnymi B2B"] },
+            { label: "Rynek & Analiza", items: ["Analiza rynku i kwalifikacja potrzeb", "Badania jakościowe i ilościowe", "Grupy fokusowe i insights"] },
+            { label: "Biznes & ROI", items: ["Pozycjonowanie cenowe i rentowność", "Business case i KPI", "Zarządzanie P&L", "Alignment wielopoziomowy"] }
           ]
         },
         {
           heading: "AI & Data",
           groups: [
-            {
-              label: "Architektura AI",
-              items: ["Frameworki agentyczne (LLM, RAG)", "LangGraph orchestration", "Human-in-the-loop design", "Machine learning i generatywna AI"]
-            },
-            {
-              label: "Governance & Zgodność",
-              items: ["EU AI Act compliance", "Governance i etyka AI", "Ramy prawne danych"]
-            },
-            {
-              label: "Narzędzia & Rozwój",
-              items: ["Claude / Anthropic API", "n8n workflow automation", "Prompt engineering", "Ewangelizacja produktu AI"]
-            }
+            { label: "Architektura AI", items: ["Frameworki agentyczne (LLM, RAG)", "LangGraph orchestration", "Human-in-the-loop design", "Machine learning i generatywna AI"] },
+            { label: "Governance & Zgodność", items: ["EU AI Act compliance", "Governance i etyka AI", "Ramy prawne danych"] },
+            { label: "Narzędzia & Rozwój", items: ["Claude / Anthropic API", "n8n workflow automation", "Prompt engineering", "Ewangelizacja produktu AI"] }
           ]
         }
       ]
